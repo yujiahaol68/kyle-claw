@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/yujiahaol68/kyle-claw#readme",
   "dependencies": {
+    "bagpipe": "^0.3.5",
     "cheerio": "^0.22.0",
     "eventproxy": "^0.3.5",
     "express": "^4.15.2",

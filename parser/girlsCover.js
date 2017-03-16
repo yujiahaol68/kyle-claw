@@ -12,5 +12,6 @@ exports.parse = function (req, res, next) {
 			href: href.trim()
 		})
 	})
+	res.locals.coverCollection = covers
 	res.send(covers)
 }
