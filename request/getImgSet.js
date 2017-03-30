@@ -10,6 +10,7 @@ var down = require('../storage/download/down')
 
 var baseUrl = 'http://www.dazui88.com/tag/youwu/20170130255503'
 
+// Get Page number
 superagent.get(baseUrl + '.html')
   .charset('gbk')
   .set('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36')
@@ -21,14 +22,16 @@ superagent.get(baseUrl + '.html')
     var $ = cheerio.load(res.text)
     var reg = /[1-9][0-9]*/g
     var pages = Number($('.pagebreak1 ul li a').first().text().match(reg))
+
+    // Generate each page links
     while (pages > 1) {
       var href = baseUrl + '_' + pages + '.html'
       topicUrls.push(href)
       pages--
     }
-
     topicUrls.push(baseUrl + '.html')
 
+    // Limit parallel request number
     var ep = new eventproxy()
 
     ep.after('topic_html', topicUrls.length, function (topics) {
