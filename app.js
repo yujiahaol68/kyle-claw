@@ -4,7 +4,7 @@ const express = require('express')
   , girlsPic = require('./request/girlsPic')
   , girlsCover = require('./parser/girlsCover')
   , girlsImgEach = require('./parser/girlsImgEach')
-  , bbcArticle = require('./request/bbcArticle')
+  , bbcArticle = require('./request/articles')
   , essayRules = require('./parser/articleRules')
   , emailService = require('./storage/email/sendEmail');
 
@@ -16,7 +16,7 @@ app.get('/girls/tag/:id', girlsPic.coverRequest, girlsCover.parse);
 
 app.get('/girls', girlsPic.reqImgEachPage, girlsImgEach.parsePageImg);
 
-app.get('/bbc-article/get', bbcArticle.reqArticle, essayRules.bbcParser, emailService.sendIt);
+app.get('/bbc-article/get', bbcArticle.reqArticle, essayRules.bbcParser, emailService.sendBBC);
 
 //app.get('/showall/girlsPic', )
 

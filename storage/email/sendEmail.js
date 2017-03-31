@@ -4,7 +4,7 @@ const transOption = require('./emailConfig').transOption
 
 let htmlContent = ''
 
-exports.sendIt = function (req, res, next) {
+exports.sendBBC = function (req, res, next) {
     if(res.locals.htmlArray) {
         res.locals.htmlArray.forEach(function(element) {
             htmlContent += "<br/><br/><h1>" + element.title + "</h1>" +
@@ -14,7 +14,8 @@ exports.sendIt = function (req, res, next) {
                             "<br/><br/><hr/>"
         })
 
-        message.html += htmlContent
+        message.html = '<p>Your favourite tag of articles is: <strong>wwfuture</strong></p>' + htmlContent
+        message.subject = 'Your private BBC articles'
 
         let transporter = mailer.createTransport(transOption)
 
@@ -30,6 +31,35 @@ exports.sendIt = function (req, res, next) {
     }
     else {
         res.send('NO Data for sending!')
+    }
+
+}
+
+exports.sendVOA = function (articleArray) {
+    if(articleArray) {
+        articleArray.forEach(function(element) {
+            htmlContent += "<br/><br/><h1>" + element.title + "</h1>" +
+                            "<article>" + element.contextHtml.replace(/\\r\\n/g, '') + "</article>" +
+                            "<br/><br/><hr/>"
+        })
+
+        message.html = htmlContent
+        message.subject = 'Pravite VOA News'
+
+        let transporter = mailer.createTransport(transOption)
+
+        transporter.sendMail(message, function (err, info) {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.log('Send Successfully!')
+            }
+        })
+
+    }
+    else {
+        console.log('NO Data for sending!')
     }
 
 }
