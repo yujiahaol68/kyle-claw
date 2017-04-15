@@ -1,19 +1,18 @@
 const mailer = require('nodemailer')
 
-
 // Email Server Config
 exports.transOption = {
     service: '163',
     auth: {
-        user: 'xxxxxx@163.com',
-        pass: 'xxxxxx'
+        user: 'xxxx@163.com',
+        pass: 'xxxx'
     }
 }
 
 // Message Detail Config
 exports.message = {
-    from: 'xxxxxxx@163.com',
-    to: 'xxxxxxx@163.com',
+    from: 'xxxx@163.com',
+    to: 'xxxxx@gmail.com',
     subject: '',
     html: ''
 }

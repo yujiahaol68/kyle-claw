@@ -39,12 +39,12 @@ exports.sendVOA = function (articleArray) {
     if(articleArray) {
         articleArray.forEach(function(element) {
             htmlContent += "<br/><br/><h1>" + element.title + "</h1>" +
-                            "<article>" + element.contextHtml.replace(/\\r\\n/g, '') + "</article>" +
-                            "<br/><br/><hr/>"
+                            "<article>" + element.contextHtml.replace(/\\r\\n/g, '<br/>') + "</article>" +
+                            "<br/><hr/>"
         })
 
         message.html = htmlContent
-        message.subject = 'Pravite VOA News'
+        message.subject = 'Pravite News For you'
 
         let transporter = mailer.createTransport(transOption)
 

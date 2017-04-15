@@ -57,7 +57,7 @@ ep.after('article_html', titleUrls.length, function (articles) {
             title: $('#title h1').text().trim(),
             author: $('.byline').text().trim(),
             //contextHtml: bodyBridge += '<hr/>'
-            contextHtml: $('#content').html()
+            contextHtml: $('#content').html().replace(/&apos;/g, '&#39;').replace(/href=".*"/g, 'href="#"')
         })
         //bodyBridge = ''
     })
