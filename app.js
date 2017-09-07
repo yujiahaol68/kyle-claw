@@ -6,8 +6,7 @@ const express = require('express')
   , girlsImgEach = require('./parser/girlsImgEach')
   , bbcArticle = require('./request/articles')
   , essayRules = require('./parser/articleRules')
-  , emailService = require('./storage/email/sendEmail')
-  , qna = require('./headless/qna');
+  , emailService = require('./storage/email/sendEmail');
 
 
 // initialize express instance
@@ -18,8 +17,6 @@ app.get('/girls/tag/:id', girlsPic.coverRequest, girlsCover.parse);
 app.get('/girls', girlsPic.reqImgEachPage, girlsImgEach.parsePageImg);
 
 app.get('/bbc-article/get', bbcArticle.reqArticle, essayRules.bbcParser, emailService.sendBBC);
-
-app.get('/qna', qna.getQnAPage);
 
 //app.get('/showall/girlsPic', )
 

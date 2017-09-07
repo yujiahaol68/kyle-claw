@@ -38,6 +38,7 @@ jspm_packages
 
 # Download folder
 storage/download/pics
+storage/data
 
 # Local files
 .DS_Store
